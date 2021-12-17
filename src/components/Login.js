@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -19,21 +20,38 @@ const Login = () => {
     }
 
     const handleSubmit = event => {
-
+        event.preventDefault()
+        const token = localStorage.getItem('token')
+        axios.post('http://localhost:5000/api/login', values, {
+            headers: {
+                authorization: token
+            }
+        })
+            .then(res => {
+                console.log(res)
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('role', res.data.role)
+                localStorage.setItem('username', res.data.username)
+                window.location.href = '/view'
+            })
+            .catch(err => {
+                console.log(err)
+                setError(err.response.data)
+            })
     }
 
     return (<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
-            <FormGroup>
+            <FormGroup onSubmit={handleSubmit}>
                 <Label>Username</Label>
-                <Input type='text' name='username' id='username' />
+                <Input type='text' name='username' id='username' onChange={handleChange} />
                 <Label>Password</Label>
-                <Input type='password' name='password' id='password' />
+                <Input type='password' name='password' id='password' onChange={handleChange} />
                 <Button id='submit'>Submit</Button>
             </FormGroup>
-            <p id='error'></p>
+            <p id='error'>{error.error}</p>
         </ModalContainer>
     </ComponentContainer>);
 }
