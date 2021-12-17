@@ -13,6 +13,13 @@ const dummyData = {
     body: 'body'
 }
 
+const noAuthorData = {
+    headline: 'headline',
+    author: null,
+    summary: 'summary',
+    body: 'body'
+}
+
 test('renders component without errors', () => {
     render(<Article article={dummyData} />)
 });
@@ -29,8 +36,11 @@ test('renders headline, author from the article when passed in through props', (
     expect(body).toBeInTheDocument()
 });
 
-// test('renders "Associated Press" when no author is given', ()=> {
-// });
+test('renders "Associated Press" when no author is given', () => {
+    render(<Article article={noAuthorData} />)
+    const noAuthor = screen.queryByText(/Associated Press/)
+    expect(noAuthor).toBeInTheDocument()
+});
 
 // test('executes handleDelete when the delete button is pressed', ()=> {
 // });
