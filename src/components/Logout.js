@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
-const Logout = () => {        
-    return(<div></div>);
+const Logout = () => {
+    useEffect(() => {
+        axiosWithAuth().post(`/logout`)
+            .then(() => {
+                localStorage.removeItem('token')
+                localStorage.removeItem('role')
+                localStorage.removeItem('username')
+                window.location.href = '/'
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    })
+    return (<div></div>);
 }
 
 export default Logout;

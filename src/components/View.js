@@ -17,7 +17,7 @@ const View = (props) => {
             .catch(err => {
                 console.error(err)
             })
-    })
+    }, [])
 
     const handleDelete = (id) => {
         axiosWithAuth().delete(`/articles/${id}`)

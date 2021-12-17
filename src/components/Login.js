@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+    const { push } = useHistory()
     const initialFormValues = {
         username: '',
         password: ''
@@ -32,11 +34,12 @@ const Login = () => {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('role', res.data.role)
                 localStorage.setItem('username', res.data.username)
-                window.location.href = '/view'
+                push('/view')
             })
             .catch(err => {
                 console.log(err)
-                setError(err.response.data)
+                const errorToSet = err.response.data
+                setError(errorToSet)
             })
     }
 
