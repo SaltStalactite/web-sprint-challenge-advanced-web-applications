@@ -118,8 +118,16 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+Tokens are read and decisions are made for data transfer based on the client's permission.
+
 2. What steps can you take in your web apps to keep your data secure?
+
+Protected routes and authentication with tokens can help keep data secure.
 
 3. Describe how web servers work.
 
+A web server stores the code for different websites to be shared across the world at all times. When we load the code for our websites, or web apps, on a server like this, we say that the server is "hosting" our website/app. The code that tells the physical web server what to do is itself called a web server.
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+Post is create, Get is read, Put is update, Delete is delete.
