@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Login = () => {
+    const initialFormValues = {
+        username: '',
+        password: ''
+    }
+    const initialError = {
+        error: ''
+    }
+    const [values, setValues] = useState(initialFormValues)
+    const [error, setError] = useState(initialError)
+
+    const handleChange = event => {
+        const name = event.target.name
+        const value = event.target.value
+        setValues({ ...values, [name]: value })
+    }
+
+    const handleSubmit = event => {
+
+    }
 
     return (<ComponentContainer>
         <ModalContainer>
