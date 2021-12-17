@@ -13,7 +13,7 @@ const Logout = () => {
             .catch(err => {
                 console.error(err)
             })
-    })
+    }, [])
     return (<div></div>);
 }
 

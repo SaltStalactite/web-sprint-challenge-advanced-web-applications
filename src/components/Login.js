@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-    const { push } = useHistory()
+    // const { push } = useHistory()
     const initialFormValues = {
         username: '',
         password: ''
@@ -34,7 +34,8 @@ const Login = () => {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('role', res.data.role)
                 localStorage.setItem('username', res.data.username)
-                push('/view')
+                // push('/view')
+                window.location.href = '/view'
             })
             .catch(err => {
                 console.log(err)
