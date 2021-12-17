@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import styled from 'styled-components';
-
+import View from './View';
 import Header from './Header';
 import BloomHeader from './BloomHeader';
 import Login from './Login';
@@ -12,6 +12,9 @@ const App = () => {
       <BloomHeader />
       <Header />
       <RouteContainer>
+        <Route path='/view'>
+          <View />
+        </Route>
         <Route path='/login'>
           <Login />
         </Route>
