@@ -14,12 +14,8 @@ const App = () => {
       <BloomHeader />
       <Header />
       <RouteContainer>
-        <PrivateRoute path='/logout'>
-          <Logout />
-        </PrivateRoute>
-        <PrivateRoute path='/view'>
-          <View />
-        </PrivateRoute>
+        <PrivateRoute component={Logout} path='/logout' />
+        <PrivateRoute component={View} path='/view' />
         <Route path='/login'>
           <Login />
         </Route>

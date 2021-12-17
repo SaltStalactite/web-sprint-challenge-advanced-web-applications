@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import axiosWithAuth from '../utils/axiosWithAuth';
 import Article from './Article';
 import EditForm from './EditForm';
 
@@ -9,36 +9,53 @@ const View = (props) => {
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+    useEffect(() => {
+        axiosWithAuth().get('/articles')
+            .then(res => {
+                setArticles(res.data)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    })
+
     const handleDelete = (id) => {
+        axiosWithAuth().delete(`/articles/${id}`)
+            .then(res => {
+                setArticles(res.data)
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
 
     const handleEdit = (article) => {
     }
 
-    const handleEditSelect = (id)=> {
+    const handleEditSelect = (id) => {
         setEditing(true);
         setEditId(id);
     }
 
-    const handleEditCancel = ()=>{
+    const handleEditCancel = () => {
         setEditing(false);
     }
 
-    return(<ComponentContainer>
+    return (<ComponentContainer>
         <HeaderContainer>View Articles</HeaderContainer>
         <ContentContainer flexDirection="row">
             <ArticleContainer>
                 {
                     articles.map(article => {
                         return <ArticleDivider key={article.id}>
-                            <Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect}/>
+                            <Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect} />
                         </ArticleDivider>
                     })
                 }
             </ArticleContainer>
-            
+
             {
-                editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel}/>
+                editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel} />
             }
         </ContentContainer>
     </ComponentContainer>);
