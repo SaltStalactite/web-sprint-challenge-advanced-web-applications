@@ -22,7 +22,7 @@ const EditForm = (props) => {
             .catch(err => {
                 console.error(err)
             })
-    })
+    }, [])
 
     const handleChange = (e) => {
         setArticle({
